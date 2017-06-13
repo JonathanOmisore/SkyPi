@@ -37,7 +37,12 @@ async def start(websocket, path):
     
     while True:
         data = await websocket.recv()
-        jsondata = json.loads(data)
+        try:
+            jsondata = json.loads(data)
+        except ValueError, e:
+            deniedmessage = {"response": "ACCESS DENIED"}
+            await websocket.send(json.dumps(deniedmessage))
+            websockets.close(start,address,port)
         print(data)
         print(jsondata)
         if not ispasswordcorrect(jsondata["password"]):
