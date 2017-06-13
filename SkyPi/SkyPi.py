@@ -10,9 +10,10 @@ address = sys.argv[1]
 port = int(sys.argv[2])
 password = sys.argv[3]
 def ispasswordcorrect(jsondata):
-    if jsondata["password"] != password:
+    data = json.loads(jsondata)
+    if data["password"] != password:
         return False
-    elif "password" not in jsondata:
+    elif "password" not in data:
         return False
     else:
         return True
