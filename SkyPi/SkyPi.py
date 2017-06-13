@@ -9,8 +9,10 @@ print("server open")
 address = sys.argv[1]
 port = int(sys.argv[2])
 password = sys.argv[3]
-def ispasswordcorrect(passw):
-    if passw != password:
+def ispasswordcorrect(jsondata):
+    if jsondata["password"] != password:
+        return False
+    elif "password" not in jsondata:
         return False
     else:
         return True
@@ -33,23 +35,29 @@ def action(data):
         return hostinfo()
     else:
         return {"response": "Nothing"}
+def isjson(jsonthing):
+    try:
+        jsondata = json.loads(jsonthing)
+    except:
+        return False
+    return True
+    
 async def start(websocket, path):
     
     while True:
         data = await websocket.recv()
-        try:
-            jsondata = json.loads(data)
-        except ValueError, e:
+        if not isjson(data):
             deniedmessage = {"response": "ACCESS DENIED"}
             await websocket.send(json.dumps(deniedmessage))
             websockets.close(start,address,port)
-        print(data)
-        print(jsondata)
-        if not ispasswordcorrect(jsondata["password"]):
+            
+      
+        elif not ispasswordcorrect(data):
             deniedmessage = {"response": "ACCESS DENIED"}
             await websocket.send(json.dumps(deniedmessage))
             websockets.close(start,address,port)
         else:
+            jsondata = json.loads(data)
             connected = "{} connected".format(jsondata["host"])
             print(connected)
             print(jsondata["command"])
