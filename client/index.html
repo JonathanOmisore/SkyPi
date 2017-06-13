@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>SkyPi</title>
+</head>
+<body>
+	<script
+			  src="https://code.jquery.com/jquery-3.2.1.js"
+			  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+			  crossorigin="anonymous"></script>
+
+<script src="websocket.js"></script>
+<script>
+$(document).ready(function(){
+$("#commandenter").hide();
+
+$("#namebutton").click(function(){
+
+start($("#address").val(),$("#port").val());
+
+
+});
+$("#commandbutton").click(function(){
+var command = $("#command").val();
+var jsonsend = {"command": command, "host": "localhost","password": password};
+websocket.send(JSON.stringify(jsonsend));
+
+});
+});
+
+</script>
+<h1>SkyPi</h1>
+<div id="nameenter">
+	<p>Enter server address:</p>
+<input type="text" id = "address">
+
+
+<p>Enter server port:</p>
+<input type="text" id = "port">
+
+<p>Enter server password:</p>
+<input type="password" id = "password">
+
+<button id = "namebutton">Enter</button>
+</div>
+<div id="commandenter">
+<p>Enter your command:</p>
+<input type="text" id = "command">
+
+<button id = "commandbutton">Enter</button>
+</div>
+<div id="response">
+	
+<p id="status"></p>
+<p id="system"></p>
+<p id="release"></p>
+<p id="host"></p>
+</div>
