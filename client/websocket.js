@@ -41,8 +41,8 @@ function displayresponse(obj){
 		}
 		break;
 	case "hostinfo":
-		$("#system").text("Operating system: " + obj["system"] + " " + obj["release"]);
-	$("#host").text("Host name: " + obj["host"]);
+	$("#response").html("<p>Operating system: " + obj["system"] + " " +obj["release"] + "</p> <p>Host name: " + obj["host"]);
+		
 	break;
 	case "listdirectories":
 		$("#response").html("<pre>" + obj["directories"] + "</pre>");
