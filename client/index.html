@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>SkyPi</title>
+<title>Sky Labs</title>
 </head>
 <body>
 	<script
@@ -11,6 +11,7 @@
 <script src="websocket.js"></script>
 <script>
 $(document).ready(function(){
+ //host is 45.30.41.152, port is 8765
 $("#commandenter").hide();
 
 $("#namebutton").click(function(){
@@ -28,7 +29,7 @@ websocket.send(JSON.stringify(jsonsend));
 });
 
 </script>
-<h1>SkyPi</h1>
+<h1>Sky Labs</h1>
 <div id="nameenter">
 	<p>Enter server address:</p>
 <input type="text" id = "address">
@@ -48,10 +49,7 @@ websocket.send(JSON.stringify(jsonsend));
 
 <button id = "commandbutton">Enter</button>
 </div>
-<div id="response">
-	
 <p id="status"></p>
-<p id="system"></p>
-<p id="release"></p>
-<p id="host"></p>
+<div id="response">
+
 </div>
