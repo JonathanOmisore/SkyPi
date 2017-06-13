@@ -1,5 +1,5 @@
 # SkyPi
-WebSockets are a relatively new technology that faciliates communication between the server and the web browser; SkyPi uses WebSockets to allow you to access your Raspberry Pi from any device with a web browser. Data is exchanged in JSON format.
+WebSockets are a relatively new technology that faciliates communication between the server and the web browser. SkyPi uses WebSockets to allow you to access your Raspberry Pi from any device with a web browser. Data is exchanged in JSON format.
 
 
 ## Dependencies:
