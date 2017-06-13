@@ -43,7 +43,7 @@ async def start(websocket, path):
         if not ispasswordcorrect(jsondata["password"]):
             deniedmessage = {"response": "ACCESS DENIED"}
             await websocket.send(json.dumps(deniedmessage))
-            websockets.close(start,'192.168.1.122',8765)
+            websockets.close(start,address,port)
         else:
             connected = "{} connected".format(jsondata["host"])
             print(connected)
@@ -53,7 +53,7 @@ async def start(websocket, path):
                 await websocket.send(json.dumps({"response":"requestaccess", "permission":"allowed"}))
             else:
                 await websocket.send(json.dumps(action(jsondata))) 
-start_server = websockets.serve(start, '192.168.1.122', 8765)
+start_server = websockets.serve(start,address, port)
 
 
 asyncio.get_event_loop().run_until_complete(start_server)
